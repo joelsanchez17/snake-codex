@@ -77,19 +77,13 @@ export function advanceState(state) {
   const direction = state.pendingDirection ?? state.direction;
   const vector = DIRECTION_VECTORS[direction];
   const head = state.snake[0];
-  const nextHead = {
-    x: head.x + vector.x,
-    y: head.y + vector.y,
-  };
-
-  if (isWallCollision(nextHead, state.size)) {
-    return {
-      ...state,
-      direction,
-      pendingDirection: direction,
-      isGameOver: true,
-    };
-  }
+  const nextHead = wrapPosition(
+    {
+      x: head.x + vector.x,
+      y: head.y + vector.y,
+    },
+    state.size
+  );
 
   const eatsFood = positionsEqual(nextHead, state.food);
   const bodyToCheck = eatsFood ? state.snake : state.snake.slice(0, -1);
@@ -142,8 +136,11 @@ export function positionsEqual(a, b) {
   return a.x === b.x && a.y === b.y;
 }
 
-function isWallCollision(position, size) {
-  return position.x < 0 || position.y < 0 || position.x >= size || position.y >= size;
+function wrapPosition(position, size) {
+  return {
+    x: (position.x + size) % size,
+    y: (position.y + size) % size,
+  };
 }
 
 function toKey(position) {
