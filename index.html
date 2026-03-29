@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Snake</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <section class="panel">
+        <div class="status-row">
+          <div>
+            <p class="label">Score</p>
+            <p class="value" id="score">0</p>
+          </div>
+          <div>
+            <p class="label">Best</p>
+            <p class="value" id="best-score">0</p>
+          </div>
+          <div>
+            <p class="label">State</p>
+            <p class="value" id="game-state">Ready</p>
+          </div>
+        </div>
+
+        <div class="board-wrap">
+          <div
+            class="board"
+            id="board"
+            role="application"
+            aria-label="Snake game board"
+            tabindex="0"
+          ></div>
+          <div class="overlay" id="overlay">
+            <p id="overlay-title">Classic Snake</p>
+            <p id="overlay-copy">Press an arrow key or WASD to begin.</p>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button id="pause-button" type="button">Pause</button>
+          <button id="restart-button" type="button">Restart</button>
+        </div>
+
+        <div class="controls" aria-label="On-screen controls">
+          <button class="control up" data-direction="up" type="button">Up</button>
+          <button class="control left" data-direction="left" type="button">Left</button>
+          <button class="control down" data-direction="down" type="button">Down</button>
+          <button class="control right" data-direction="right" type="button">Right</button>
+        </div>
+
+        <div class="help">
+          <p>Move with arrow keys or WASD.</p>
+          <p>Press Space to pause. Restart resets the run.</p>
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="./snake-game.js"></script>
+  </body>
+</html>
